@@ -1,0 +1,95 @@
+{
+  "message": "Interview Report generated succesfully.",
+  "interviewReport": {
+    "jobDescription": "# Full Stack Developer Intern (MERN Stack)\n\n## About the Role\n\nWe are looking for a passionate and motivated Full Stack Developer Intern to join our engineering team. The ideal candidate should have strong fundamentals in web development, hands-on experience with the MERN stack, and an eagerness to learn modern software engineering practices.\n\nAs a Full Stack Developer Intern, you will work on real-world applications, contribute to frontend and backend development, build scalable APIs, and collaborate with developers to deliver high-quality products.\n\n## Responsibilities\n\n* Develop and maintain responsive web applications using React.js.\n* Build and optimize backend services using Node.js and Express.js.\n* Design and integrate RESTful APIs.\n* Work with MongoDB for data storage and management.\n* Implement authentication and authorization mechanisms.\n* Collaborate with team members using Git and GitHub.\n* Debug, test, and improve application performance.\n* Participate in code reviews and technical discussions.\n* Learn and apply modern development practices, including Docker and cloud deployment concepts.\n\n## Required Skills\n\n* Strong knowledge of JavaScript (ES6+).\n* Experience with React.js, Node.js, and Express.js.\n* Familiarity with MongoDB and database design.\n* Understanding of REST APIs and client-server architecture.\n* Knowledge of HTML5, CSS3, and responsive design.\n* Experience with Git and GitHub.\n* Basic understanding of Data Structures and Algorithms.\n* Strong problem-solving and analytical skills.\n\n## Preferred Skills\n\n* Experience with Socket.io and real-time applications.\n* Knowledge of WebRTC.\n* Familiarity with Docker and containerization.\n* Exposure to cloud platforms such as AWS.\n* Understanding of authentication using JWT or OAuth.\n* Experience integrating AI APIs or third-party services.\n\n## Sample Projects That Demonstrate Fit\n\n* Real-time video conferencing application using React, Node.js, Socket.io, and WebRTC.\n* AI-powered Resume Analyzer using MERN stack and Gemini API.\n* Full-stack applications with authentication, dashboards, and REST APIs.\n\n## Qualifications\n\n* Pursuing a B.Tech/B.E. in Information Technology, Computer Science, or a related field.\n* Strong interest in Full Stack Development.\n* Demonstrated ability to build personal or academic projects.\n* Good communication and teamwork skills.\n\n## Interview Evaluation Areas\n\n1. React.js fundamentals and component architecture.\n2. Node.js and Express.js backend development.\n3. MongoDB schema design and query optimization.\n4. REST API design principles.\n5. Data Structures and Algorithms.\n6. Real-time communication concepts (Socket.io/WebRTC).\n7. Docker and deployment fundamentals.\n8. Problem-solving and debugging approach.\n\n## Success Criteria\n\n* Ability to contribute to production-quality code.\n* Strong ownership and learning mindset.\n* Effective collaboration with the development team.\n* Continuous improvement in technical and problem-solving skills.\n",
+    "resume": "Amit Singh\nAmitsingh54@gmail.com | (+91) xxxxxxxx\n@amit-singh /you- full-naamitme\nSKILLS\n❖ Java (DSA)\n❖ HTML,CSS ,Java Script , Bootstrap, Tailwind\n❖ ReactJS , NodeJS, ExpressJS\n❖ MongoDB ,MySql, Git & Github\nEDUCATION\n❖ Information Technology | Chaudhary Charan Singh University,Meerut (2024-28)\n❖ XII (CBSE Board) | Jai Narayan Vidya Mandir Inter College,Kanpur Grade: XII :81.5%\nACADEMIC PROJECTS\n❖ Wanderlust – Full-Stack Travel Listing WebApplication\n• Built a travel listing platform with user authentication, authorization, and CRUD\noperations using Node.js, Express.js, and MongoDB.\n• Implemented secure login/signup with Passport.js and owner-based access control for\nlistings.\n• Integrated Cloudinary for image uploads and MapTiler API for geocoding and interactive\nlocation mapping.\n• Followed MVC architecture and RESTful APIs using MongoDB, Mongoose, EJS, and\nBootstrap.\n• Github | Live Demo: https://wanderlust-project-dm6k.onrender.com/listings\n❖ Zerodha– Full-Stack Stock Trading Platform\n• Developed a full-stack stock trading platform using React, Node.js, Express.js, and\nMongoDB.\n• Implemented token-based authentication to ensure secure user login and access control.\n• Built interactive dashboards and stock data visualizations using charts for portfolio\ntracking and analysis.\n• Integrated RESTful APIs and managed data efficiently through MongoDB and backend\nservices.\n• Github | Live Demo: https://zerodha-frontend-g58c.onrender.com\nACHIEVEMENTS / HOBBIES\n● Selected for Smart India Hackathon (SIH) from the college-level screening round. Link\n● Secured 2nd Rank in the Monthly Data Structures & Algorithms (DSA) Contest organized by the college\n\n-- 1 of 1 --\n\n",
+    "selfDescription": "🎓 BTech IT Student | Aspiring Full Stack Developer\nI’m passionate about learning new technologies and continuously improving my problem-solving and development skills.\nCurrently, I’m focused on:\n• Data Structures & Algorithms (DSA) using Java\n• Building Full Stack Web Applications\nI enjoy turning ideas into real-world projects and strengthening my understanding through hands-on development.\nAlways open to learning, collaboration, and new opportunities to grow 🚀",
+    "matchScore": 82,
+    "technicalQuestions": [
+      {
+        "question": "How did you manage authentication and authorization in your Wanderlust project using Passport.js?",
+        "intention": "Assess the candidate's understanding of session-based vs token-based authentication and security implementation in Express.js.",
+        "answer": "In Wanderlust, Passport.js was integrated with Express-Session and Passport-Local to manage user sessions. User models used passport-local-mongoose for password hashing and salting. Authorization middleware verified if a logged-in user was the owner of a specific listing before allowing update or delete operations."
+      },
+      {
+        "question": "What is the difference between state management using React hooks versus global state tools, and how did you pass state in your Zerodha clone?",
+        "intention": "Evaluate candidate's knowledge of React component architecture and state management patterns.",
+        "answer": "React hooks like useState and useReducer manage local component state, while Context API or Redux manage global state to avoid prop drilling across deep component trees. In the Zerodha project, key state like stock holdings and trade details were managed via parent state passed down to dashboard components and chart visualizers."
+      },
+      {
+        "question": "Explain how MongoDB indexes improve query performance and how you structured schema relationships in Mongoose.",
+        "intention": "Test database performance concepts and relational structure design in non-relational databases.",
+        "answer": "MongoDB indexes create B-tree structures on specified fields to avoid full collection scans during read queries, significantly reducing lookup time. In Mongoose, relationships were built using ObjectIds and ref attributes for population, or embedded document schemas for small, tightly coupled data models."
+      },
+      {
+        "question": "How would you handle real-time notifications or chat using Socket.io in a MERN application?",
+        "intention": "Evaluate candidate's understanding of real-time bidirectional communication as required in the job description preferred skills.",
+        "answer": "Socket.io creates a persistent WebSocket connection between client and server. The server listens for specific custom events using socket.on() and broadcasts data updates using io.emit() or socket.emit() to connected clients without requiring HTTP polling."
+      }
+    ],
+    "behavioralQuestions": [
+      {
+        "question": "Can you describe your experience participating in the Smart India Hackathon screening round and how you handled team collaboration under tight deadlines?",
+        "intention": "Understand teamwork, problem-solving under stress, and practical implementation during hackathons.",
+        "answer": "During the SIH screening, our team had limited time to build a prototype. We divided responsibilities based on individual strengths—I focused on setting up backend REST APIs and schema design. We used Git branches to avoid code conflicts and held quick standups every few hours to keep track of progress."
+      },
+      {
+        "question": "Describe a challenging bug you encountered in one of your projects and how you diagnosed and fixed it.",
+        "intention": "Evaluate debugging methodology, persistence, and problem-solving skills.",
+        "answer": "While integrating MapTiler API in Wanderlust, geographic coordinates were failing to render due to asynchronous load timing. I used browser dev tools to inspect console errors and network payloads, identified that geocoding calls were returning after component mount, and resolved it by implementing asynchronous fetch hooks with proper loading states."
+      }
+    ],
+    "skillGaps": [
+      {
+        "skills": "Socket.io and WebRTC real-time capabilities",
+        "severity": "medium"
+      },
+      { "skills": "Docker and containerization basics", "severity": "medium" },
+      {
+        "skills": "AWS deployment and cloud infrastructure concepts",
+        "severity": "low"
+      }
+    ],
+    "preparationPlan": [
+      {
+        "day": 1,
+        "focus": "Real-time Communication Concepts",
+        "tasks": [
+          [
+            "Study WebSocket architecture vs traditional HTTP polling",
+            "Build a mini chat feature using Node.js, Express, and Socket.io",
+            "Learn core concepts of WebRTC peer-to-peer signaling"
+          ]
+        ]
+      },
+      {
+        "day": 2,
+        "focus": "Docker Fundamentals & Deployment",
+        "tasks": [
+          [
+            "Learn Dockerfile structure, image creation, and basic container commands",
+            "Containerize a simple MERN application",
+            "Review cloud hosting platforms like Render, Vercel, and basic AWS EC2 setup"
+          ]
+        ]
+      },
+      {
+        "day": 3,
+        "focus": "DSA & Advanced React Optimization",
+        "tasks": [
+          [
+            "Practice key DSA topics in Java: Trees, Graphs, and Dynamic Programming",
+            "Review React performance hooks like useMemo and useCallback",
+            "Practice system design for REST API endpoints and error handling middleware"
+          ]
+        ]
+      }
+    ],
+    "user": "6a71ca67cbd0359c93555ebb",
+    "title": "Full Stack Developer Intern (MERN Stack)",
+    "_id": "6a7cac57091293a32d9bd0c1",
+    "createdAt": "2026-08-12T17:24:39.664Z",
+    "updatedAt": "2026-08-12T17:24:39.664Z",
+    "__v": 0
+  }
+}

@@ -8,7 +8,7 @@ app.use(express.json());
 app.use(cookieParser());
 app.use(
   cors({
-    origin: "http://localhost:5173",
+    origin: "https://skillbridge-ai-1-fuqf.onrender.com",
     credentials: true, //----->> because we handle data from cookies
   }),
 );

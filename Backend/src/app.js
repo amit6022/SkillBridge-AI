@@ -8,7 +8,8 @@ app.use(express.json());
 app.use(cookieParser());
 app.use(
   cors({
-    origin: "https://skillbridge-ai-1-fuqf.onrender.com",
+    // origin: "https://skillbridge-ai-1-fuqf.onrender.com",
+    origin: "http://localhost:5173",
     credentials: true, //----->> because we handle data from cookies
   }),
 );
@@ -20,5 +21,14 @@ const interviewRouter = require("./routes/interview.routes");
 /* using all the routes here */
 app.use("/api/auth", authRouter);
 app.use("/api/interview", interviewRouter);
+
+/* 404 handler - runs if no route above matched */
+app.use((req, res) => {
+  res.status(404).json({ message: "Route not found." });
+});
+
+/* centralized error handler - MUST be registered last */
+const errorMiddleware = require("./middlewares/error.middleware");
+app.use(errorMiddleware);
 
 module.exports = app;

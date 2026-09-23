@@ -8,7 +8,7 @@ app.use(express.json());
 app.use(cookieParser());
 app.use(
   cors({
-    origin: "https://skillbridge-ai-frontend.netlify.app/",
+    origin: "https://skillbridge-ai-frontend.netlify.app",
     credentials: true, //----->> because we handle data from cookies
   }),
 );

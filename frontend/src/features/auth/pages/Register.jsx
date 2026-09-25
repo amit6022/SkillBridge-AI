@@ -3,7 +3,7 @@ import { useNavigate, Link } from "react-router";
 import { useAuth } from "../hooks/useAuth";
 
 const Register = () => {
-  const { loading, handleRegister } = useAuth();
+  const { loading, error, handleRegister } = useAuth();
   const navigate = useNavigate();
 
   const [username, setUsername] = useState("");
@@ -12,8 +12,10 @@ const Register = () => {
 
   const handleSubmit = async (e) => {
     e.preventDefault();
-    await handleRegister({ username, email, password });
-    navigate("/");
+    const success = await handleRegister({ username, email, password });
+    if (success) {
+      navigate("/");
+    }
   };
 
   if (loading) {
@@ -29,6 +31,7 @@ const Register = () => {
       <div className="form-container">
         <h1>Register</h1>
 
+        {error && <p className="error-message">{error}</p>}
         <form onSubmit={handleSubmit}>
           <div className="input-group">
             <label htmlFor="email">Email</label>

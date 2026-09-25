@@ -1,4 +1,4 @@
-import { useContext, useEffect } from "react";
+import { useContext, useEffect, useState } from "react";
 import { InterviewContext } from "../interview.context";
 import {
   generateInterviewReport,
@@ -19,6 +19,7 @@ export const useInterview = () => {
 
   const { loading, setLoading, report, setReport, reports, setReports } =
     context;
+  const [error, setError] = useState(null);
 
   const generateReport = async ({
     jobDescription,
@@ -26,65 +27,69 @@ export const useInterview = () => {
     resumeFile,
   }) => {
     setLoading(true);
+    setError(null);
 
-    let response = null;
     try {
-      response = await generateInterviewReport({
+      const response = await generateInterviewReport({
         jobDescription,
         selfDescription,
         resumeFile,
       });
       setReport(response.interviewReport);
+      return response.interviewReport;
     } catch (err) {
-      console.log(err);
+      setError(
+        err.response?.data?.message ||
+          "Could not generate interview report. Please try again.",
+      );
+      return null;
     } finally {
       setLoading(false);
     }
-
-    return response.interviewReport;
   };
 
   const getReportById = async (interviewId) => {
     setLoading(true);
+    setError(null);
 
-    let response = null;
     try {
-      response = await getInterviewReportById(interviewId);
+      const response = await getInterviewReportById(interviewId);
       setReport(response.interviewReport);
+      return response.interviewReport;
     } catch (err) {
-      console.log(err);
+      setError(
+        err.response?.data?.message || "Could not load interview report.",
+      );
+      return null;
     } finally {
       setLoading(false);
     }
-
-    return response.interviewReport;
   };
 
   const getReports = async () => {
     setLoading(true);
+    setError(null);
 
-    let response = null;
     try {
-      response = await getAllInterviewReport();
+      const response = await getAllInterviewReport();
       setReports(response.interviewReports);
-
-      console.log("response.interviewReports", response.interviewReports);
+      return response.interviewReports;
     } catch (err) {
-      console.log(err);
+      setError(
+        err.response?.data?.message || "Could not load your interview reports.",
+      );
+      return null;
     } finally {
       setLoading(false);
     }
-
-    return response.interviewReports;
   };
 
   const getResumePdf = async (interviewId) => {
     setLoading(true);
-    let response = null;
+    setError(null);
 
     try {
-      response = await generateResumePdf({ interviewId });
-      console.log("response", response);
+      const response = await generateResumePdf({ interviewId });
       const url = window.URL.createObjectURL(
         new Blob([response], { type: "application/pdf" }),
       );
@@ -93,8 +98,10 @@ export const useInterview = () => {
       link.setAttribute("download", `resume_${interviewId}.pdf`);
       document.body.appendChild(link);
       link.click();
+      link.remove();
+      window.URL.revokeObjectURL(url);
     } catch (err) {
-      console.log(err);
+      setError(err.response?.data?.message || "Could not generate resume PDF.");
     } finally {
       setLoading(false);
     }
@@ -110,6 +117,7 @@ export const useInterview = () => {
 
   return {
     loading,
+    error,
     report,
     reports,
     generateReport,

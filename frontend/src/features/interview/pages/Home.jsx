@@ -4,7 +4,8 @@ import { useInterview } from "../hooks/useInterview.js";
 import { useNavigate } from "react-router";
 
 const Home = () => {
-  const { loading, generateReport, reports, getReports } = useInterview();
+  const { loading, error, generateReport, reports, getReports } =
+    useInterview();
   const [jobDescription, setJobDescription] = useState("");
   const [selfDescription, setSelfDescription] = useState("");
   const resumeInputRef = useRef();
@@ -22,8 +23,9 @@ const Home = () => {
       selfDescription,
       resumeFile,
     });
-    console.log(data);
-    navigate(`/interview/${data._id}`);
+    if (data) {
+      navigate(`/interview/${data._id}`);
+    }
   };
 
   if (loading) {
@@ -207,6 +209,7 @@ const Home = () => {
 
         {/* Card Footer */}
         <div className="interview-card__footer">
+          {error && <p className="error-message">{error}</p>}
           <span className="footer-info">
             AI-Powered Strategy Generation &bull; Approx 30s
           </span>

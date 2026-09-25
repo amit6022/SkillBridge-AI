@@ -4,14 +4,15 @@ const cors = require("cors");
 
 const app = express();
 
-app.use(express.json());
-app.use(cookieParser());
 app.use(
   cors({
     origin: "https://skillbridge-ai-frontend.netlify.app",
     credentials: true, //----->> because we handle data from cookies
   }),
 );
+
+app.use(express.json());
+app.use(cookieParser());
 
 /* require all the routes here*/
 const authRouter = require("./routes/auth.routes");

@@ -6,6 +6,10 @@ const {
 const interviewReportModel = require("../models/interviewReport.model");
 const catchAsync = require("../utils/catchAsync");
 const AppError = require("../utils/AppError");
+const { redisClient } = require("../config/redis");
+const { buildReportCacheKey } = require("../utils/cacheKey");
+
+const REPORT_CACHE_TTL_SECONDS = 60 * 60 * 24; // 24 hours
 
 /**
  * @descrition This controller is responsible for generating interview report on the basis of user self description, resume pdf and job description.
@@ -24,17 +28,47 @@ const generateInterviewReportController = catchAsync(async (req, res) => {
 
   const { selfDescription, jobDescription } = req.body;
 
-  const interviewReportByAi = await generateInterviewReport({
+  const cacheKey = buildReportCacheKey({
     resume: resumeText,
     selfDescription,
     jobDescription,
   });
 
+  let interviewReportByAi = null;
+
+  // 1. Try the cache first
+  try {
+    const cached = await redisClient.get(cacheKey);
+    if (cached) {
+      interviewReportByAi = JSON.parse(cached);
+    }
+  } catch (err) {
+    console.error("Redis read failed, falling back to Gemini:", err.message);
+  }
+
+  // 2. Cache miss (or Redis unavailable) - call Gemini for real
   if (!interviewReportByAi) {
-    throw new AppError(
-      "Could not generate interview report right now. Please try again.",
-      502,
-    );
+    interviewReportByAi = await generateInterviewReport({
+      resume: resumeText,
+      selfDescription,
+      jobDescription,
+    });
+
+    if (!interviewReportByAi) {
+      throw new AppError(
+        "Could not generate interview report right now. Please try again.",
+        502,
+      );
+    }
+
+    // 3. Save to cache for next time
+    try {
+      await redisClient.set(cacheKey, JSON.stringify(interviewReportByAi), {
+        EX: REPORT_CACHE_TTL_SECONDS,
+      });
+    } catch (err) {
+      console.error("Redis write failed:", err.message);
+    }
   }
 
   const interviewReport = await interviewReportModel.create({

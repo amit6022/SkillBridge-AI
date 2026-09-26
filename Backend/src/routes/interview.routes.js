@@ -3,6 +3,7 @@ const authMiddleware = require("../middlewares/auth.middleware");
 const interviewController = require("../controllers/interview.controller");
 const upload = require("../middlewares/file.middleware");
 const { validateGenerateReport } = require("../validator/interview.validator");
+const { aiRateLimiter } = require("../middlewares/rateLimiter.middleware");
 
 const interviewRouter = express.Router();
 
@@ -14,6 +15,7 @@ const interviewRouter = express.Router();
 interviewRouter.post(
   "/",
   authMiddleware.authUser,
+  aiRateLimiter,
   upload.single("resume"),
   validateGenerateReport,
   interviewController.generateInterviewReportController,
@@ -49,6 +51,7 @@ interviewRouter.get(
 interviewRouter.post(
   "/resume/pdf/:interviewId",
   authMiddleware.authUser,
+  aiRateLimiter,
   interviewController.generateResumePdfController,
 );
 

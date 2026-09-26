@@ -81,6 +81,12 @@ $font-stack:
     padding: 1rem 1.5rem;
     border-top: 1px solid $border-color;
 
+    .error-message {
+      color: red;
+      font-size: 0.9rem;
+      margin-right: 1rem;
+    }
+
     .footer-info {
       font-size: 0.8rem;
       color: $text-muted;

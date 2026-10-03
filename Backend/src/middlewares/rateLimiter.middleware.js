@@ -5,8 +5,8 @@ const aiRateLimiter = rateLimit({
   max: 5, // 5 requests per window, per user/IP
   //   keyGenerator: (req) => req.user?.id || req.ip,
   keyGenerator: (req) => {
-    if (req.userId) {
-      return req.userId;
+    if (req.user?.id) {
+      return req.user.id;
     }
 
     return ipKeyGenerator(req.ip, 56);

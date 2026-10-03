@@ -129,7 +129,10 @@ const getAllInterviewReportController = catchAsync(async (req, res) => {
 const generateResumePdfController = catchAsync(async (req, res) => {
   const { interviewId } = req.params;
 
-  const interviewReport = await interviewReportModel.findById(interviewId);
+  const interviewReport = await interviewReportModel.findOne({
+    _id: interviewId,
+    user: req.user.id,
+  });
 
   if (!interviewReport) {
     throw new AppError("Interview not found", 404);
@@ -149,7 +152,7 @@ const generateResumePdfController = catchAsync(async (req, res) => {
 
   res.set({
     "Content-Type": "application/pdf",
-    "Content-Disposition": `attachment, filename=resume_${interviewId}.pdf`,
+    "Content-Disposition": `attachment; filename=resume_${interviewId}.pdf`,
   });
 
   res.send(pdfBuffer);
